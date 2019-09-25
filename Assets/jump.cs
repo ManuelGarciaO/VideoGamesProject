@@ -15,7 +15,7 @@ public class jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
         }

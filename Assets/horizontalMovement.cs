@@ -20,7 +20,7 @@ public class horizontalMovement : MonoBehaviour
         /*if (Input.GetKeyDown("space"))
         {
             rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
-        }*/
+        }
         if (Input.GetKey("a"))
         { // move to the left
             rb.AddForce(-velocity * Time.deltaTime, ForceMode2D.Impulse);
@@ -32,6 +32,15 @@ public class horizontalMovement : MonoBehaviour
             rb.AddForce(velocity * Time.deltaTime, ForceMode2D.Impulse);
             //rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
             //transform.Translate(velocity);
-        }
+        }*/
+        float h = Input.GetAxis("Horizontal");
+        //print(h);
+        float v = Input.GetAxis("Vertical");
+
+
+        transform.Translate(
+            h * Time.deltaTime * velocity,
+            Space.World
+            );
     }
 }
