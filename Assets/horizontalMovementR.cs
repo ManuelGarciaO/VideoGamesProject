@@ -15,6 +15,8 @@ public class horizontalMovementR : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveRec = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 
     // Update is called once per frame
@@ -33,10 +35,6 @@ public class horizontalMovementR : MonoBehaviour
                 Space.World
                 );
 
-        }
-        else
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
         if (Input.GetKey("m"))

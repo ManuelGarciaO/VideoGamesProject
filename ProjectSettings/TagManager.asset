@@ -10,6 +10,7 @@ TagManager:
   - PlayerCube
   - PlayerTria
   - PlayerRec
+  - Ground
   layers:
   - Default
   - TransparentFX

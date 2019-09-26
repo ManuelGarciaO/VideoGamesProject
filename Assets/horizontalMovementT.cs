@@ -16,6 +16,8 @@ public class horizontalMovementT : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveTriangle = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
     }
 
     // Update is called once per frame
@@ -33,13 +35,8 @@ public class horizontalMovementT : MonoBehaviour
                 h * Time.deltaTime * velocity,
                 Space.World
                 );
-            
+         
         }
-        else
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-
         if (Input.GetKey("n"))
         {
             moveTriangle = true;
