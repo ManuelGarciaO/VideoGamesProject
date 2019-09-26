@@ -7,6 +7,9 @@ TagManager:
   - GM
   - check1
   - check2
+  - PlayerCube
+  - PlayerTria
+  - PlayerRec
   layers:
   - Default
   - TransparentFX
