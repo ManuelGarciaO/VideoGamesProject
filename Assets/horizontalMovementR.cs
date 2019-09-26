@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class horizontalMovement : MonoBehaviour
+public class horizontalMovementR : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 velocity;
     public float jumpforce;
 
-    public bool moveCube;
+    public bool moveRec;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveCube=true;
-
+        moveRec = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moveCube)
+
+        if (moveRec)
         {
             float h = Input.GetAxis("Horizontal");
-            //print(h);
+            print(h);
             float v = Input.GetAxis("Vertical");
 
 
@@ -32,27 +32,34 @@ public class horizontalMovement : MonoBehaviour
                 h * Time.deltaTime * velocity,
                 Space.World
                 );
+
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        if (Input.GetKey("m"))
+        {
+            moveRec = true;
+            rb.constraints = RigidbodyConstraints2D.None;
         }
         if (Input.GetKey("b"))
         {
-            moveCube = true;
-            rb.constraints = RigidbodyConstraints2D.None;
+            moveRec = false;
+            freezeRec();
         }
         if (Input.GetKey("n"))
         {
-            moveCube = false;
-            freezeCube();
-        }
-        if (Input.GetKey("m"))
-        {
-            moveCube = false;
-            freezeCube();
+            moveRec = false;
+            freezeRec();
         }
 
 
     }
-    public void freezeCube()
+    public void freezeRec()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
+
 }
