@@ -6,7 +6,10 @@ public class horizontalMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 velocity;
-    public float jumpforce;
+
+    [Range(1, 10)]
+    public float jumpVelocity;
+    private bool grounded;
 
     public bool moveCube;
 
@@ -15,7 +18,6 @@ public class horizontalMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveCube=true;
-
     }
 
     // Update is called once per frame
@@ -41,12 +43,15 @@ public class horizontalMovement : MonoBehaviour
         if (Input.GetKey("n"))
         {
             moveCube = false;
-            freezeCube();
         }
         if (Input.GetKey("m"))
         {
             moveCube = false;
-            freezeCube();
+        }
+
+        if ((Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow)) && grounded == true && moveCube)
+        {
+            Jump();
         }
 
 
@@ -54,5 +59,24 @@ public class horizontalMovement : MonoBehaviour
     public void freezeCube()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    private void Jump()
+    {
+        grounded = false;
+        Debug.Log("Salto");
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "PlayerTria" || collision.gameObject.tag == "PlayerCube" || collision.gameObject.tag == "PlayerRec")
+        {
+            grounded = true;
+            Debug.Log("Suelo");
+            if (!moveCube)
+            {
+                freezeCube();
+            }
+        }
     }
 }

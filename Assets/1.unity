@@ -317,7 +317,6 @@ GameObject:
   - component: {fileID: 1167788349}
   - component: {fileID: 1167788345}
   - component: {fileID: 1167788352}
-  - component: {fileID: 1167788350}
   - component: {fileID: 1167788351}
   m_Layer: 0
   m_Name: Rectangle
@@ -433,19 +432,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1167788350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167788344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa14b45ba34b68d45a573e0ec14d95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpVelocity: 7
 --- !u!114 &1167788351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,8 +445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 0}
-  jumpforce: 0
   moveRec: 0
+  jumpVelocity: 7
 --- !u!114 &1167788352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,14 +529,13 @@ GameObject:
   - component: {fileID: 1325354093}
   - component: {fileID: 1325354092}
   - component: {fileID: 1325354091}
-  - component: {fileID: 1325354090}
   - component: {fileID: 1325354088}
   - component: {fileID: 1325354087}
-  - component: {fileID: 1325354094}
   - component: {fileID: 1325354095}
   - component: {fileID: 1325354089}
+  - component: {fileID: 1325354090}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cubo
   m_TagString: PlayerCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,8 +601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 0}
-  jumpforce: 0
-  moveCube: 0
+  jumpVelocity: 7
+  moveCube: 1
 --- !u!114 &1325354090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,19 +677,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1325354094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325354086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa14b45ba34b68d45a573e0ec14d95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpVelocity: 7
 --- !u!114 &1325354095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +855,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 453258396211568664, guid: 37a37ed809e17dd49b3db1dc47e5ac6b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 453258396211568643, guid: 37a37ed809e17dd49b3db1dc47e5ac6b,
         type: 3}
@@ -1421,7 +1398,6 @@ GameObject:
   - component: {fileID: 2134944617}
   - component: {fileID: 2134944621}
   - component: {fileID: 2134944622}
-  - component: {fileID: 2134944624}
   - component: {fileID: 2134944623}
   - component: {fileID: 2134944625}
   m_Layer: 0
@@ -1566,19 +1542,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
---- !u!114 &2134944624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134944616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa14b45ba34b68d45a573e0ec14d95a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpVelocity: 7
 --- !u!114 &2134944625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,9 +1555,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 0}
-  jumpforce: 0
-  cube: {fileID: 0}
   moveTriangle: 0
+  jumpVelocity: 7
 --- !u!1001 &453258396997742615
 PrefabInstance:
   m_ObjectHideFlags: 0

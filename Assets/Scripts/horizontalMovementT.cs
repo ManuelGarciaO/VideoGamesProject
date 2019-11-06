@@ -6,10 +6,12 @@ public class horizontalMovementT : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 velocity;
-    public float jumpforce;
-    public horizontalMovement cube;
 
     public bool moveTriangle;
+
+    [Range(1, 10)]
+    public float jumpVelocity;
+    private bool grounded;
 
     // Use this for initialization
     void Start()
@@ -45,12 +47,16 @@ public class horizontalMovementT : MonoBehaviour
         if (Input.GetKey("b"))
         {
             moveTriangle = false;
-            freezeTriangle();
+            
         }
         if (Input.GetKey("m"))
         {
             moveTriangle = false;
-            freezeTriangle();
+        }
+
+        if ((Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow)) && grounded == true && moveTriangle)
+        {
+            Jump();
         }
 
 
@@ -58,6 +64,25 @@ public class horizontalMovementT : MonoBehaviour
     public void freezeTriangle()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    private void Jump()
+    {
+        grounded = false;
+        Debug.Log("Salto");
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "PlayerTria" || collision.gameObject.tag == "PlayerCube" || collision.gameObject.tag == "PlayerRec")
+        {
+            grounded = true;
+            Debug.Log("Suelo");
+            if (!moveTriangle)
+            {
+                freezeTriangle();
+            }
+        }
     }
 
 }

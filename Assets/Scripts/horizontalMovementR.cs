@@ -6,10 +6,11 @@ public class horizontalMovementR : MonoBehaviour
 {
     private Rigidbody2D rb;
     public Vector2 velocity;
-    public float jumpforce;
-
     public bool moveRec;
 
+    [Range(1, 10)]
+    public float jumpVelocity;
+    private bool grounded;
     // Use this for initialization
     void Start()
     {
@@ -22,6 +23,11 @@ public class horizontalMovementR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("r"))
+        {
+            Quaternion target = Quaternion.Euler(0, 0, 90);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5);
+        }
 
         if (moveRec)
         {
@@ -45,12 +51,15 @@ public class horizontalMovementR : MonoBehaviour
         if (Input.GetKey("b"))
         {
             moveRec = false;
-            freezeRec();
         }
         if (Input.GetKey("n"))
         {
             moveRec = false;
-            freezeRec();
+        }
+
+        if ((Input.GetKeyDown("w") || Input.GetKeyDown(KeyCode.UpArrow)) && grounded == true && moveRec)
+        {
+            Jump();
         }
 
 
@@ -58,6 +67,25 @@ public class horizontalMovementR : MonoBehaviour
     public void freezeRec()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    private void Jump()
+    {
+        grounded = false;
+        Debug.Log("Salto");
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "PlayerTria" || collision.gameObject.tag == "PlayerCube" || collision.gameObject.tag == "PlayerRec")
+        {
+            grounded = true;
+            Debug.Log("Suelo");
+            if (!moveRec)
+            {
+                freezeRec();
+            }
+        }
     }
 
 }
